@@ -1,0 +1,57 @@
+{
+  "configurations": [
+    {
+      "type": "coreclr",
+      "request": "launch",
+      "name": "Console sample (helper path)",
+      "preLaunchTask": "build console sample",
+      "program": "${workspaceFolder:rumpsharp}/samples/RumpSharp.Sample/bin/Debug/net10.0/RumpSharp.Sample",
+      "args": [],
+      "cwd": "${workspaceFolder:rumpsharp}/samples/RumpSharp.Sample",
+      "stopAtEntry": false,
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "coreclr",
+      "request": "launch",
+      "name": "Tray sample (helper path)",
+      "preLaunchTask": "build tray sample",
+      "program": "${workspaceFolder:rumpsharp}/samples/RumpSharp.TrayIcon.Sample/bin/Debug/net10.0/RumpSharp.TrayIcon.Sample",
+      "args": [],
+      "cwd": "${workspaceFolder:rumpsharp}/samples/RumpSharp.TrayIcon.Sample",
+      "stopAtEntry": false,
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "coreclr",
+      "request": "launch",
+      "name": "Tray sample packaged .app (in-process path)",
+      "preLaunchTask": "package tray sample",
+      "program": "${workspaceFolder:rumpsharp}/artifacts/RumpSharp Tray.app/Contents/MacOS/RumpSharp.TrayIcon.Sample",
+      "args": [],
+      "cwd": "${workspaceFolder:rumpsharp}/artifacts/RumpSharp Tray.app/Contents/MacOS",
+      "stopAtEntry": false,
+      "console": "integratedTerminal"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:rumpsharp}/native/rumpsharp-helper",
+      "name": "Debug rumpsharp-helper (native/rumpsharp-helper)",
+      "target": "rumpsharp-helper",
+      "configuration": "debug",
+      "preLaunchTask": "swift: Build Debug rumpsharp-helper (native/rumpsharp-helper)"
+    },
+    {
+      "type": "swift",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:rumpsharp}/native/rumpsharp-helper",
+      "name": "Release rumpsharp-helper (native/rumpsharp-helper)",
+      "target": "rumpsharp-helper",
+      "configuration": "release",
+      "preLaunchTask": "swift: Build Release rumpsharp-helper (native/rumpsharp-helper)"
+    }
+  ]
+}

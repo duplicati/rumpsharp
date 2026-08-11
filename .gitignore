@@ -1,0 +1,9 @@
+bin/
+obj/
+*.user
+.DS_Store
+artifacts/
+
+# Swift package build output for the notification helper. The built binary is committed at
+# src/RumpSharp/runtimes/osx/native/rumpsharp-helper instead; see native/rumpsharp-helper/build.sh.
+native/rumpsharp-helper/.build/

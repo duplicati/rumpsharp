@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnableTrimAnalyzer>true</EnableTrimAnalyzer>
+    <IsAotCompatible>true</IsAotCompatible>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <!-- NuGet packaging -->
+  <PropertyGroup>
+    <PackageId>RumpSharp</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>RumpSharp contributors</Authors>
+    <Description>Show native macOS Notification Center notifications from .NET, with custom icons, action buttons and click callbacks. No Xamarin/macOS workload required - it talks to the Objective-C runtime and UserNotifications.framework directly. A console application gets the .app bundle identity macOS requires from a small embedded native helper, without being copied into a bundle or relaunched.</Description>
+    <PackageTags>macos;notifications;notification-center;usernotifications;objective-c;interop;rumps</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/duplicati/rumpsharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/duplicati/rumpsharp</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Deterministic>true</Deterministic>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    <None Include="../../LICENSE" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <!--
+    The prebuilt notification helper: a committed universal binary (see
+    native/rumpsharp-helper/build.sh) embedded as a byte blob, so consumers need no Swift toolchain
+    and trimming/AOT have nothing to analyse. AppBundle decompresses it into the generated .app
+    bundle, where it becomes CFBundleExecutable.
+
+    Stored gzipped - 88 KB rather than 318 KB - because an application that already ships as a .app
+    never needs the helper and should not pay for it. The compressed form is what is committed, so the
+    bytes in the assembly are the bytes in the repository.
+  -->
+  <ItemGroup>
+    <EmbeddedResource Include="runtimes/osx/native/rumpsharp-helper.gz" LogicalName="RumpSharp.rumpsharp-helper.gz" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="RumpSharp.Tests" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,70 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build console sample",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder:rumpsharp}/samples/RumpSharp.Sample/RumpSharp.Sample.csproj",
+        "--nologo",
+        "-consoleLoggerParameters:NoSummary"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build tray sample",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder:rumpsharp}/samples/RumpSharp.TrayIcon.Sample/RumpSharp.TrayIcon.Sample.csproj",
+        "--nologo",
+        "-consoleLoggerParameters:NoSummary"
+      ],
+      "group": "build",
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "package tray sample",
+      "detail": "Publishes, bundles and ad-hoc signs the tray sample as a real .app, so it runs with its own bundle identity.",
+      "type": "process",
+      "command": "${workspaceFolder:rumpsharp}/samples/RumpSharp.TrayIcon.Sample/package.sh",
+      "args": [],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build solution",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder:rumpsharp}/RumpSharp.sln",
+        "--nologo",
+        "-consoleLoggerParameters:NoSummary"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "test",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder:rumpsharp}/RumpSharp.sln",
+        "--nologo"
+      ],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}
