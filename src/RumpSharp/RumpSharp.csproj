@@ -15,7 +15,7 @@
   <!-- NuGet packaging -->
   <PropertyGroup>
     <PackageId>RumpSharp</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>RumpSharp contributors</Authors>
     <Description>Show native macOS Notification Center notifications from .NET, with custom icons, action buttons and click callbacks. No Xamarin/macOS workload required - it talks to the Objective-C runtime and UserNotifications.framework directly. A console application gets the .app bundle identity macOS requires from a small embedded native helper, without being copied into a bundle or relaunched.</Description>
     <PackageTags>macos;notifications;notification-center;usernotifications;objective-c;interop;rumps</PackageTags>
